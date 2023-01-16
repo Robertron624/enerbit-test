@@ -1,0 +1,51 @@
+.dashboard__container{
+    width: 800px;
+    justify-content: space-between;
+}
+
+.dashboard__header--btns{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+#add-item{
+    padding: 2rem
+}
+
+.dashboard__header{
+    border: 1px solid red;
+    border-radius: 10px;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 10px;
+}
+
+.dashboard__header img{
+    margin-bottom: auto;
+}
+
+.dashboard__header h1{
+    margin: 0;
+}
+
+.items__container{
+    width: 100%;
+}
+
+.item__container{
+    justify-content: space-between;
+    padding: 0.45rem 1rem;
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
+.item__btns{
+    display: flex;
+    gap: 1rem;
+}
+
+.flex{
+    display: flex;
+}
