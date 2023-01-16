@@ -49,3 +49,10 @@
 .flex{
     display: flex;
 }
+
+.item__title{
+    width: 80%;
+    text-align: left;
+    cursor: pointer;
+    height: 100%;
+}

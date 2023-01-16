@@ -1,0 +1,20 @@
+#newItem__form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form__row{
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.label__inputs{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.modal__header{
+    text-align: center;
+    margin-top: 0;
+}

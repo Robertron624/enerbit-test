@@ -1,0 +1,9 @@
+.confirmation__box h2{
+    color: white;
+}
+
+.confirmation__btns{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+}
