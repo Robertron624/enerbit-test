@@ -43,7 +43,6 @@ const Dashboard = () => {
     useEffect(() => {
         async function fetchData() {
             await axios.get(`${baseURl}?page=0&size=50`).then((response) => {
-                console.log("all data -> ", response.data)
                 setMeters(response.data.items);
             });
         }

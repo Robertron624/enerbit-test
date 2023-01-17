@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { baseURl } from "../../constants";
 import "./index.css";
 
@@ -41,16 +42,22 @@ const EditItem = ({
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log("item before being sent -> ", Item);
         if (Object.keys(Item).length === 0) return;
 
         const url = `${baseURl}/${id}`;
         axios
             .patch(url, Item)
             .then((response) => {
-                console.log(response);
                 setItemEditModalIsOpen(false);
-                window.location.reload();
+                
+                toast.success("Item saved successfully 🚀🚀🚀", {
+                    autoClose: 1500,
+                    position: toast.POSITION.TOP_CENTER,
+                });
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1600);
             })
             .catch((err) => console.log("error while posting -> ", err));
     };

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { baseURl } from "../../constants";
 import "./index.css";
 
@@ -21,13 +22,19 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log("item before being sent -> ", newItem);
         if (Object.keys(newItem).length === 0) return;
         axios
             .post(baseURl, newItem)
             .then((response) => {
                 setNewItemModalIsOpen(false);
-                location.reload();
+                toast.success("Item submitted successfully 🚀🚀🚀", {
+                    autoClose: 1500,
+                    position: toast.POSITION.TOP_CENTER,
+                });
+
+                setTimeout(() => {
+                    location.reload();
+                }, 1600);
             })
             .catch((err) => console.log("error while posting -> ", err));
     };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {toast} from "react-toastify"
 import "./index.css";
 import ItemComponent from "../ItemComponent/ItemComponent";
 import {baseURl} from "../../constants";
@@ -21,7 +22,12 @@ const Search = ({ setSearchIsOpen }: any) => {
                 setItemFound({...response.data})
             })
             .catch((error) => {
-                if(error.response.data.detail === "meter not found") return alert("Item not found")
+                if(error.response.data.detail === "meter not found"){
+                    toast.success("No item found with such ID", {
+                        autoClose: 1500,
+                        position: toast.POSITION.TOP_CENTER,
+                    });
+                }
             });
     };
 
