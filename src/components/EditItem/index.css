@@ -1,0 +1,8 @@
+.cancel__btn{
+    background-color: red;
+}
+
+.edit__btns{
+    display: flex;
+    justify-content: space-evenly;
+}

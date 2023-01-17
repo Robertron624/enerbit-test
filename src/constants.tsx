@@ -10,5 +10,6 @@ export const customModalStyles = {
         transform: "translate(-50%, -50%)",
         padding: "4rem",
         backgroundColor: "#1a1a1a",
+        height: "100%"
     },
 };

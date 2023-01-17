@@ -24,8 +24,8 @@ const DeleteItem = ({ item, setDeleteModalIsOpen }: any) => {
         <div className="confirmation__box">
             <h2>Are you sure you want to delete item with id: {item.id}</h2>
             <div className="confirmation__btns">
-                <button onClick={deleteItem}>Yes</button>
-                <button onClick={() => setDeleteModalIsOpen(false)}>No</button>
+                <button className="delete__yes" onClick={deleteItem}>Yes</button>
+                <button className="delete__no" onClick={() => setDeleteModalIsOpen(false)}>No</button>
             </div>
         </div>
     );

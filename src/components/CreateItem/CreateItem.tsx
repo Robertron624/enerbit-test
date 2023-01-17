@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import {baseURl} from "../../constants";
+import { baseURl } from "../../constants";
 import "./index.css";
 
 const CreateItem = ({ setNewItemModalIsOpen }: any) => {
@@ -167,9 +167,17 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                         />
                     </div>
                 </div>
-                <button className="submit__btn" type="submit">
-                    Submit
-                </button>
+                <div className="add__btns">
+                    <button className="submit__btn" type="submit">
+                        Submit
+                    </button>
+                    <button
+                        onClick={() => setNewItemModalIsOpen(false)}
+                        className="cancel__add"
+                    >
+                        Cancel
+                    </button>
+                </div>
             </form>
         </div>
     );

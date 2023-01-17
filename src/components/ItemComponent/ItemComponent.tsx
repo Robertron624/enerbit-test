@@ -4,6 +4,20 @@ import DeleteItem from "../DeleteItem/DeleteItem";
 import ItemInfo from "../ItemInfo/ItemInfo";
 import EditItem from "../EditItem/EditItem";
 import { customModalStyles } from "../../constants";
+import "./index.css"
+
+export const deleteModalStyles = {
+    content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        padding: "4rem",
+        backgroundColor: "#1a1a1a",
+    },
+};
 
 const ItemComponent = ({ item }: any) => {
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
@@ -74,7 +88,7 @@ const ItemComponent = ({ item }: any) => {
             <Modal
                 isOpen={deleteModalIsOpen}
                 onRequestClose={() => closeModal("delete")}
-                style={customModalStyles}
+                style={deleteModalStyles}
                 contentLabel="Delete Item"
             >
                 <DeleteItem

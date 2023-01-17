@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-import {baseURl} from "../../constants";
+import { baseURl } from "../../constants";
+import "./index.css";
 
-const EditItem = ({ item, setItemEditModalIsOpen, setItemInfoModalIsOpen }: any) => {
-    
+const EditItem = ({
+    item,
+    setItemEditModalIsOpen,
+    setItemInfoModalIsOpen,
+}: any) => {
     const {
         serial,
         connection_type,
@@ -40,12 +44,12 @@ const EditItem = ({ item, setItemEditModalIsOpen, setItemInfoModalIsOpen }: any)
         console.log("item before being sent -> ", Item);
         if (Object.keys(Item).length === 0) return;
 
-        const url = `${baseURl}/${id}`
+        const url = `${baseURl}/${id}`;
         axios
             .patch(url, Item)
             .then((response) => {
-                console.log(response)
-                setItemEditModalIsOpen(false)
+                console.log(response);
+                setItemEditModalIsOpen(false);
                 window.location.reload();
             })
             .catch((err) => console.log("error while posting -> ", err));
@@ -198,9 +202,17 @@ const EditItem = ({ item, setItemEditModalIsOpen, setItemInfoModalIsOpen }: any)
                         />
                     </div>
                 </div>
-                <button className="submit__btn" type="submit">
-                    Submit
-                </button>
+                <div className="edit__btns">
+                    <button className="submit__btn" type="submit">
+                        Save
+                    </button>
+                    <button
+                        className="cancel__btn"
+                        onClick={() => setItemInfoModalIsOpen(false)}
+                    >
+                        Cancel
+                    </button>
+                </div>
             </form>
         </div>
     );
