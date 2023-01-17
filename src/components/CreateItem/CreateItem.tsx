@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import baseURl from "../../constants";
+import {baseURl} from "../../constants";
 import "./index.css";
 
 const CreateItem = ({ setNewItemModalIsOpen }: any) => {

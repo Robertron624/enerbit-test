@@ -1,5 +1,5 @@
 .dashboard__container{
-    width: 800px;
+    width: 80vw;
     justify-content: space-between;
 }
 
@@ -55,4 +55,11 @@
     text-align: left;
     cursor: pointer;
     height: 100%;
+    margin: auto 0;
+}
+
+@media screen and (max-width: 471px){
+    .dashboard__header{
+        flex-direction: column;
+    }
 }

@@ -1,0 +1,13 @@
+.search__container{
+    color: wheat;
+}
+
+.search__container h2{
+    margin-bottom: 2rem;
+}
+
+.search__form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

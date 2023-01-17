@@ -3,19 +3,7 @@ import Modal from "react-modal";
 import DeleteItem from "../DeleteItem/DeleteItem";
 import ItemInfo from "../ItemInfo/ItemInfo";
 import EditItem from "../EditItem/EditItem";
-
-const customModalStyles = {
-    content: {
-        top: "50%",
-        left: "50%",
-        right: "auto",
-        bottom: "auto",
-        marginRight: "-50%",
-        transform: "translate(-50%, -50%)",
-        padding: "4rem",
-        backgroundColor: "#1a1a1a",
-    },
-};
+import { customModalStyles } from "../../constants";
 
 const ItemComponent = ({ item }: any) => {
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);

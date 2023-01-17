@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./index.css";
-import baseURl from "../../constants";
+import {baseURl} from "../../constants";
 
 const DeleteItem = ({ item, setDeleteModalIsOpen }: any) => {
 

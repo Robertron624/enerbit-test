@@ -5,57 +5,65 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 import CreateItem from "../../components/CreateItem/CreateItem";
 import ItemComponent from "../../components/ItemComponent/ItemComponent";
+import Search from "../../components/Search/Search";
+import { customModalStyles, baseURl } from "../../constants";
 
 Modal.setAppElement("#root");
-
-const customModalStyles = {
-    content: {
-        top: "50%",
-        left: "50%",
-        right: "auto",
-        bottom: "auto",
-        marginRight: "-50%",
-        transform: "translate(-50%, -50%)",
-        padding: "4rem",
-        backgroundColor: "#1a1a1a",
-    },
-};
 
 const Dashboard = () => {
     const navigate = useNavigate();
     const [meters, setMeters] = useState([]);
     const [newItemModalIsOpen, setNewItemModalIsOpen] = useState(false);
+    const [searchIsOpen, setSearchIsOpen] = useState(false);
 
     // Check if there is a user and a password in session storage, if not, go to login page
     useEffect(() => {
         const user = sessionStorage.getItem("user");
         const password = sessionStorage.getItem("password");
-    
-        if (!user || !password) {
-            navigate("/")
-        }
-    }, [])
 
+        if (!user || !password) {
+            navigate("/");
+        }
+    }, []);
+
+    // Fetchers api data and stores it in a state
     useEffect(() => {
         async function fetchData() {
             await axios
                 .get(
-                    `https://ops.enerbit.dev/learning/api/v1/meters?page=0&size=50`
+                    `${baseURl}?page=0&size=50`
                 )
                 .then((response) => {
-                    console.log(response);
                     setMeters(response.data.items);
                 });
         }
         fetchData();
     }, []);
 
-    function openModal() {
-        setNewItemModalIsOpen(true);
+    function openModal(modalName: string) {
+        switch (modalName) {
+            case "add": {
+                setNewItemModalIsOpen(true);
+                break;
+            }
+            case "search": {
+                setSearchIsOpen(true);
+                break;
+            }
+        }
     }
 
-    function closeModal() {
-        setNewItemModalIsOpen(false);
+    function closeModal(modalName: string) {
+        switch (modalName) {
+            case "add": {
+                setNewItemModalIsOpen(false);
+                break;
+            }
+            case "search": {
+                setSearchIsOpen(false);
+                break;
+            }
+        }
     }
 
     return (
@@ -68,16 +76,29 @@ const Dashboard = () => {
                     />
                 </a>
                 <div className="dashboard__header--btns">
-                    <button onClick={() => openModal()} id="add-item">
+                    <button onClick={() => openModal("add")} id="add-item">
                         Add product
                     </button>
-                    <button id="search-item">Search</button>
+                    <button
+                        onClick={() => openModal("search")}
+                        id="search-item"
+                    >
+                        Search
+                    </button>
                 </div>
             </header>
 
             <Modal
+                isOpen={searchIsOpen}
+                onRequestClose={() => closeModal("search")}
+                style={customModalStyles}
+                contentLabel="Search Item"
+            >
+                <Search setSearchIsOpen={setSearchIsOpen} />
+            </Modal>
+            <Modal
                 isOpen={newItemModalIsOpen}
-                onRequestClose={() => closeModal()}
+                onRequestClose={() => closeModal("add")}
                 style={customModalStyles}
                 contentLabel="Add Item"
             >

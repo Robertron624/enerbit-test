@@ -26,6 +26,12 @@
     flex-direction: column;
 }
 
+@media screen and (max-width:981px){
+    .form__container--add .form__row {
+        flex-direction: column;
+    }
+}
+
 .submit__btn{
     border: 1px solid gray;
 }
