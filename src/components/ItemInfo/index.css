@@ -25,3 +25,14 @@
     font-weight: 900;
     color: bisque;
 }
+
+.itemInfo__btns{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.itemInfo__btns button{
+    border: 1px solid grey;
+}

@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "react-modal";
+import DeleteItem from "../DeleteItem/DeleteItem";
+import EditItem from "../EditItem/EditItem";
 import "./index.css";
 
-const ItemInfo = ({ item, setItemInfoModalIsOpen }: any) => {
+const customModalStyles = {
+    content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        padding: "4rem",
+        backgroundColor: "#1a1a1a",
+    },
+};
+
+const ItemInfo = ({ item }: any) => {
     const {
         serial,
         connection_type,
@@ -16,6 +32,35 @@ const ItemInfo = ({ item, setItemInfoModalIsOpen }: any) => {
         location,
         manufacturer,
     } = item;
+
+    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+    const [itemEditModalIsOpen, setItemEditModalIsOpen] = useState(false);
+
+    function openModal(modalName: string) {
+        switch (modalName) {
+            case "delete": {
+                setDeleteModalIsOpen(true);
+                break;
+            }
+            case "edit": {
+                setItemEditModalIsOpen(true);
+                break;
+            }
+        }
+    }
+
+    function closeModal(modalName: string) {
+        switch (modalName) {
+            case "delete": {
+                setDeleteModalIsOpen(false);
+                break;
+            }
+            case "edit": {
+                setItemEditModalIsOpen(false);
+                break;
+            }
+        }
+    }
 
     return (
         <div>
@@ -78,6 +123,32 @@ const ItemInfo = ({ item, setItemInfoModalIsOpen }: any) => {
                     </tr>
                 </tbody>
             </table>
+            <div className="itemInfo__btns">
+                <button onClick={() => openModal("edit")}>Edit</button>
+                <button onClick={() => openModal("delete")}>Delete</button>
+            </div>
+            <Modal
+                isOpen={itemEditModalIsOpen}
+                onRequestClose={() => closeModal("edit")}
+                style={customModalStyles}
+                contentLabel="Edit Item"
+            >
+                <EditItem
+                    item={item}
+                    setItemEditModalIsOpen={setItemEditModalIsOpen}
+                />
+            </Modal>
+            <Modal
+                isOpen={deleteModalIsOpen}
+                onRequestClose={() => closeModal("delete")}
+                style={customModalStyles}
+                contentLabel="Delete Item"
+            >
+                <DeleteItem
+                    item={item}
+                    setDeleteModalIsOpen={setDeleteModalIsOpen}
+                />
+            </Modal>
         </div>
     );
 };

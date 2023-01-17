@@ -38,6 +38,7 @@ const LoginPage = () => {
 
   return (
     <div className='form__container'>
+        <h2>Please login</h2>
         <form onSubmit={handleSubmit}>
             <label htmlFor="usename">Username</label><input onChange={handleUsername} name='username' type="text" />
             <label htmlFor="password">Password</label> <input onChange={handlePassword} type="password" name="password" id="password" />

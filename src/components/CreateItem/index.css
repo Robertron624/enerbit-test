@@ -20,8 +20,12 @@
     margin-bottom: 2rem;
 }
 
-.form__container{
+.form__container--add{
     color: white;
     display: flex   ;
     flex-direction: column;
+}
+
+.submit__btn{
+    border: 1px solid gray;
 }

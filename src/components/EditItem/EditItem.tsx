@@ -1,33 +1,52 @@
 import axios from "axios";
 import React, { useState } from "react";
 import baseURl from "../../constants";
-import "./index.css";
 
-const CreateItem = ({ setNewItemModalIsOpen }: any) => {
-    const [newItem, setNewItem] = useState({
-        serial: "342423423",
-        connection_type: "directa",
-        storage_system: "interno",
-        condition: "nuevo",
-        owner: "RF",
-        location: "",
-        manufacturer: "",
-        purchase: "2022-07-28 03:08:49.340514",
-        i_max: "6345.654",
-        i_b: "21.5",
-        i_n: "876.5",
-        seals: "545.65",
+const EditItem = ({ item, setItemEditModalIsOpen, setItemInfoModalIsOpen }: any) => {
+    
+    const {
+        serial,
+        connection_type,
+        storage_system,
+        condition,
+        owner,
+        purchase,
+        seals,
+        i_b,
+        i_max,
+        i_n,
+        location,
+        manufacturer,
+        id,
+    } = item;
+
+    const [Item, setItem] = useState({
+        serial: serial,
+        connection_type: connection_type,
+        storage_system: storage_system,
+        condition: condition,
+        owner: owner,
+        location: location,
+        manufacturer: manufacturer,
+        purchase: purchase,
+        i_max: i_max,
+        i_b: i_b,
+        i_n: i_n,
+        seals: seals,
     });
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log("item before being sent -> ", newItem);
-        if (Object.keys(newItem).length === 0) return;
+        console.log("item before being sent -> ", Item);
+        if (Object.keys(Item).length === 0) return;
+
+        const url = `${baseURl}/${id}`
         axios
-            .post(baseURl, newItem)
+            .patch(url, Item)
             .then((response) => {
-                setNewItemModalIsOpen(false);
-                location.reload();
+                console.log(response)
+                setItemEditModalIsOpen(false)
+                window.location.reload();
             })
             .catch((err) => console.log("error while posting -> ", err));
     };
@@ -35,12 +54,12 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
     const handleChange = (event: any) => {
         const name = event.target.name;
         const value = event.target.value;
-        setNewItem({ ...newItem, [name]: value });
+        setItem({ ...Item, [name]: value });
     };
 
     return (
         <div className="form__container--add">
-            <h1 className="modal__header">Add new Item</h1>
+            <h1 className="modal__header">Edit Item with id: {item.id}</h1>
             <form id="newItem__form" onSubmit={handleSubmit}>
                 <div className="form__row">
                     <div className="label__inputs">
@@ -50,6 +69,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             type="text"
                             name="serial"
                             id="serial"
+                            value={Item.serial}
                         />
                     </div>
                     <div className="label__inputs">
@@ -58,6 +78,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             onChange={handleChange}
                             name="connection_type"
                             id="connection_type"
+                            value={Item.connection_type}
                         >
                             <option value="directa">directa</option>
                             <option value="semi-directa">semi-directa</option>
@@ -70,6 +91,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             onChange={handleChange}
                             name="storage_system"
                             id="storage_system"
+                            value={Item.storage_system}
                         >
                             <option value="interno">interno</option>
                             <option value="externo">externo</option>
@@ -83,6 +105,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             onChange={handleChange}
                             name="condition"
                             id="condition"
+                            value={Item.condition}
                         >
                             <option value="nuevo">nuevo</option>
                             <option value="usado">usado</option>
@@ -94,6 +117,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             onChange={handleChange}
                             name="condition"
                             id="condition"
+                            value={Item.owner}
                         >
                             <option value="RF">RF</option>
                             <option value="OR">OR</option>
@@ -106,6 +130,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             type="text"
                             name="location"
                             id="location"
+                            value={Item.location}
                         />
                     </div>
                 </div>
@@ -117,6 +142,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             type="text"
                             name="manufacturer"
                             id="manufacturer"
+                            value={Item.manufacturer}
                         />
                     </div>
                     <div className="label__inputs">
@@ -126,6 +152,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             type="text"
                             name="purchase"
                             id="purchase"
+                            value={Item.purchase}
                         />
                     </div>
                     <div className="label__inputs">
@@ -135,6 +162,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             type="number"
                             name="i_max"
                             id="i_max"
+                            value={Item.i_max}
                         />
                     </div>
                 </div>
@@ -146,6 +174,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             type="number"
                             name="i_b"
                             id="i_b"
+                            value={Item.i_b}
                         />
                     </div>
                     <div className="label__inputs">
@@ -155,6 +184,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             type="number"
                             name="i_n"
                             id="i_n"
+                            value={Item.i_n}
                         />
                     </div>
                     <div className="label__inputs">
@@ -164,6 +194,7 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
                             type="number"
                             name="seals"
                             id="seals"
+                            value={Item.seals}
                         />
                     </div>
                 </div>
@@ -175,4 +206,4 @@ const CreateItem = ({ setNewItemModalIsOpen }: any) => {
     );
 };
 
-export default CreateItem;
+export default EditItem;

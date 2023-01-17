@@ -13,3 +13,14 @@
     width: 90px;
     margin: 0 auto;
 }
+
+.form__container {
+    display: flex;
+    background: bisque;
+    padding: 5rem 6rem;
+    flex-direction: column;
+}
+
+.form__container h2 {
+    margin-bottom: 2rem;
+}
