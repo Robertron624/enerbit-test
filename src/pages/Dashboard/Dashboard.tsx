@@ -7,6 +7,7 @@ import CreateItem from "../../components/CreateItem/CreateItem";
 import ItemComponent from "../../components/ItemComponent/ItemComponent";
 import Search from "../../components/Search/Search";
 import { customModalStyles, baseURl } from "../../constants";
+import Pagination from "../../components/Pagination/Pagination";
 
 Modal.setAppElement("#root");
 
@@ -16,7 +17,19 @@ const Dashboard = () => {
     const [newItemModalIsOpen, setNewItemModalIsOpen] = useState(false);
     const [searchIsOpen, setSearchIsOpen] = useState(false);
 
-    // Check if there is a user and a password in session storage, if not, go to login page
+    // User is currently on this page
+    const [currentPage, setCurrentPage] = useState(1);
+    // No of Records to be displayed on each page
+    const [recordsPerPage] = useState(10);
+
+    const indexOfLastRecord:number = currentPage * recordsPerPage;
+    const indexOfFirstRecord:number = indexOfLastRecord - recordsPerPage;
+
+    const currentRecords = meters?.slice(indexOfFirstRecord, indexOfLastRecord);
+
+    const nPages = Math.ceil(meters?.length / recordsPerPage)
+
+    // Check if there is an user and a password in session storage, if not, go to login page
     useEffect(() => {
         const user = sessionStorage.getItem("user");
         const password = sessionStorage.getItem("password");
@@ -26,16 +39,13 @@ const Dashboard = () => {
         }
     }, []);
 
-    // Fetchers api data and stores it in a state
+    // Fetches api data and stores it in a state
     useEffect(() => {
         async function fetchData() {
-            await axios
-                .get(
-                    `${baseURl}?page=0&size=50`
-                )
-                .then((response) => {
-                    setMeters(response.data.items);
-                });
+            await axios.get(`${baseURl}?page=0&size=50`).then((response) => {
+                console.log("all data -> ", response.data)
+                setMeters(response.data.items);
+            });
         }
         fetchData();
     }, []);
@@ -107,9 +117,10 @@ const Dashboard = () => {
 
             <div className="items__container">
                 {meters.length === 0 ? <h1>There are no Meters</h1> : null}
-                {meters.map((item: any) => {
+                {currentRecords.map((item: any) => {
                     return <ItemComponent item={item} key={item.id} />;
                 })}
+                <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             </div>
         </div>
     );
