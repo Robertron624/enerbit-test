@@ -43,7 +43,7 @@ const CreateItem = ({ setDeleteModalIsOpen }: any) => {
     };
 
     return (
-        <div>
+        <div className="form__container">
             <h1 className="modal__header">Add new Item</h1>
             <form id="newItem__form" onSubmit={handleSubmit}>
                 <div className="form__row">

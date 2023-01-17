@@ -5,8 +5,11 @@ import baseURl from "../../constants";
 
 const DeleteItem = ({ item, setDeleteModalIsOpen }: any) => {
 
+    console.log("item  from delete component -> ", item)
+
     const deleteItem = (): void => {
         const url = `${baseURl}/${item.id}`;
+
 
         axios
             .delete(url)

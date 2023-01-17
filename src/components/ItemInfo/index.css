@@ -1,0 +1,20 @@
+.itemInfo__table{
+    border: 1px solid red;
+}
+
+.itemInfo__table{
+    color: white;
+    width: 800px;
+}
+.item__info--header {
+    color: wheat;
+    font-weight: 900;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.itemInfo__table th,
+.itemInfo__table td
+{
+    text-align: center;
+}
