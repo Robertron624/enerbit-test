@@ -17,4 +17,11 @@
 .itemInfo__table td
 {
     text-align: center;
+    border: 1px solid grey;
+}
+
+.itemInfo__table th {
+    font-size: 2rem;
+    font-weight: 900;
+    color: bisque;
 }

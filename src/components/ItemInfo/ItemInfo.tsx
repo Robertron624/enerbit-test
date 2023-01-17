@@ -2,8 +2,6 @@ import React from "react";
 import "./index.css";
 
 const ItemInfo = ({ item, setItemInfoModalIsOpen }: any) => {
-    console.log("Item recieved -> ", item);
-
     const {
         serial,
         connection_type,
